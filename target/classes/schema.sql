@@ -1,5 +1,3 @@
-USE shopping_list;
-
 CREATE TABLE IF NOT EXISTS user (
     user_id int NOT NULL AUTO_INCREMENT,
     first_name varchar(50) DEFAULT NULL,
