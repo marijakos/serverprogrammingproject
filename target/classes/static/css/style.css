@@ -1,0 +1,116 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.mainGridContainerClass {
+    display: grid;
+    grid-template-columns: 20% 10% 25% auto;
+    grid-template-rows: 64px 64px auto;
+    grid-row-gap: 2px;
+    grid-column-gap: 2px;
+    grid-template-areas: 
+        'mainHome             mainTitleClass     mainTitleClass    mainUser' 
+        'mainNewProductClass    mainNewProductClass  mainShoppingButtonClass mainShoppingButtonClass' 
+        'mainProductListClass    mainProductButtonClass  mainShoppingListClass mainShoppingListClass';
+
+    background: url("../images/white-paper-1024x768.png") no-repeat center/contain;        
+    background-size: cover;
+    height: 98%;
+    width: 99%;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.mainHome {
+    grid-area: mainHome;
+    text-align: left;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: rgb(82, 19, 19);
+}
+
+.mainTitleClass {
+    grid-area: mainTitleClass;
+    font-weight: bold;
+    color: rgb(82, 19, 19);
+    text-align: center;
+    vertical-align: top;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: rgb(82, 19, 19);
+}
+
+.mainUser {
+    grid-area: mainUser;
+    text-align: right;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: rgb(82, 19, 19);
+}
+
+.mainProductsClass {
+    grid-area: mainProductsClass;
+    white-space: normal;
+    padding: 12px; /* Add some padding */
+    margin: 2px;
+    border-right-style: none;
+}
+
+.mainShoppingClass {
+    grid-area: mainShoppingClass;
+    white-space: normal;
+    padding: 12px; /* Add some padding */
+    margin: 2px;
+    border-right-style: none;
+}
+
+.mainNewProductClass {
+    grid-area: mainNewProductClass;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 12px; /* Add some padding */
+    margin: 2px;
+    border-right-style: none;
+}
+
+.mainProductListClass {
+    grid-area: mainProductListClass;
+}
+
+select {
+    width: 90%;
+}
+
+.mainProductButtonClass {
+    grid-area: mainProductButtonClass;
+}
+
+.mainShoppingListClass {
+    grid-area: mainShoppingListClass;
+    border-left: solid;
+    border-width: 3px;
+    border-color: rgb(82, 19, 19);
+}
+
+.mainShoppingButtonClass {
+    grid-area: mainShoppingButtonClass;
+}
+
+.mainShoppingListClass h2 {
+    font-weight: bold;
+    color: rgb(82, 19, 19);
+    text-align: left;
+}
+
+.mainShoppingListClass h3 {
+    font-weight: bold;
+    color: rgb(82, 19, 19);
+}
+
+.mainShoppingListClass a {
+    color: rgb(53, 12, 12);
+}
+

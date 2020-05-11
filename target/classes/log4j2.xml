@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %highlight{%-5p} [%t] %c{1.} %m%n"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="logs/serverprogrammingproject.log" filePattern="logs/old/serverprogrammingproject-%d{yyyyMMdd}-%i.gz">
+            <PatternLayout pattern="%d %-5p [%t] %c %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="500">
+                <Delete basePath="logs/old">
+                    <IfFileName glob="ddm-characteristics-*.gz" />
+                    <IfAccumulatedFileSize exceeds="5 GB" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <loggers>
+        <Logger name="org.apache.log4j.xml" level="all"/>
+        <root level="debug">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="RollingFile"/>
+        </root>
+    </loggers>
+</Configuration>

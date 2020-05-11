@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+    	<meta charset=utf-8>
+    	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Shopping</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <!--
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+        --> 
+    </head>
+    <body>
+    
+   	<div class="mainGridContainerClass">    
+	
+	    <div class="mainHome">
+	       	<a href="#" th:href="@{/shopping}">Shopping List</a>
+	   	</div>
+	   	
+	   	<header class="mainTitleClass">
+	       	<h1>Create Shopping List</h1>
+	   	</header>
+	    
+	    <div class="mainUser">
+	    	<span th:text="${loggedUser}"></span>
+	    	<a href="#" th:href="@{/logout}">Log out</a>
+	   	</div>
+   	
+       	<div  class="mainNewProductClass">
+	        <form th:object="${newProduct}" th:action="@{/shopping/saveproduct}" action="#" method="post">
+	        	<h2>Products</h2>
+	        	<!-- <p th:if="${#fields.hasErrors('${newProduct.productName}')}" th:errors="*{productName}">Product already exist</p>
+	        	 -->
+	            <div>
+	            	<h3>New Product Name : <input type="text" name="productName" class="form-control"/> </h3>
+	            	<input type="submit" value="Save" class="btn btn-primary"/>
+	            </div>
+	        </form>
+	   </div>    
+	   
+	   <form th:action="@{/shopping/moveproduct}" method="post">
+		   <div  class="mainProductListClass"> 
+		   		<h3>Available Products</h3>
+	            <select name="products" multiple="multiple" size="15">
+	    			<option th:each="product : ${products}" th:value="${product.productId}" th:text="${product.name}"/>
+				</select>
+		   </div>  
+		   <div  class="mainProductButtonClass">        
+            	<input type="submit" value="To Shopping List" name="move" class="btn btn-primary"/>
+            	<input type="hidden" th:value="${shoppingListId}" name="shoppingListId" class="btn btn-primary"/>
+	            <input type="submit" value="Delete" name="delete" class="btn btn-primary"/>
+	        </div>
+        </form>
+
+	    <form th:object="${shoppingList}" th:action="@{/shopping/shoppinglist}" action="#" method="post">
+			<div class="mainShoppingButtonClass">
+		        <h2>Shopping list</h2>
+				<input type="submit" value="Save quantity changes" name="save" class="btn btn-primary"/>
+	        </div>
+	        <div class="mainShoppingListClass">
+			    <table th:name="products">
+					<tr>
+					    <th>Name</th>
+					    <th>Quantity (decimal number)</th>
+					</tr>  
+			    	<tr th:each = "shoppingListItem : ${shoppingList}">
+			    		<td th:text="${shoppingListItem.name}"></td>
+			    		<td><input type="text" th:value="${shoppingListItem.quantity}" th:name="'productKey'+${shoppingListItem.id}" class="form-control"/></td>
+			 			<td><a th:href="@{/shoppingdelete/{id}(id=${shoppingListItem.id})}">Delete</a></td> 
+			 			<td><input type="hidden" th:value="${shoppingListItem.id}"/></td>   		
+			    	</tr>
+			    </table>
+	        </div>
+		</form>
+
+    </div>
+     
+    </body>
+</html>
